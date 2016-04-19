@@ -1,7 +1,10 @@
 import java.io.*;
 import java.util.*;
 
-public class Solution {
+/**
+ * Reference to problem: https://www.hackerrank.com/challenges/2d-array
+ */
+public class 2DArray {
     public static int valueOfHourglass = 0;
 
     public static void main(String[] args) {
