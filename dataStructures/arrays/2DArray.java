@@ -1,11 +1,8 @@
 import java.io.*;
 import java.util.*;
 
-/**
- * Reference to problem: https://www.hackerrank.com/challenges/2d-array
- */
-public class 2DArray {
-    public static int valueOfHourglass = 0;
+public class Solution {
+    public static int valueOfHourglass;
 
     public static void main(String[] args) {
 
@@ -22,11 +19,12 @@ public class 2DArray {
             }
         }
 
-        // Loop through the entire matrix to get the values of the
-        // hourglass
-        for(int i = 0; i <= 3; i++) {
-            for(int j = 0; j <= 3; j++) {
-                int total = getTopRow(array[i], j) + getMiddleRow(array[i + 1], j) + getBottomRow(array[i + 2], j);
+        for(int row = 0; row <= 3; row++) {
+            for(int column = 0; column <= 3; column++) {
+                // System.out.println("Top Row: " + getTopRow(array, row, column));
+                // System.out.println("Middle Row: " + getMiddleRow(array, row + 1, column));
+                // System.out.println("Bottom Row: " + getBottomRow(array, row + 2, column) + "\n");
+                int total = getTopRow(array, row, column) + getMiddleRow(array, row + 1, column) + getBottomRow(array, row + 2, column);
                 if(valueOfHourglass < total) {
                     valueOfHourglass = total;
                 }
@@ -37,24 +35,26 @@ public class 2DArray {
         System.out.println(valueOfHourglass);
     }
 
-    private static int getTopRow(int[] array, int start) {
+    private static int getTopRow(int[][] array, int row, int column) {
         int topRow[] = new int[3];
-        for(int i = start; i < 3; i++) {
-            topRow[i] = array[i];
+        for(int i = 0; i < 3; i++) {
+            topRow[i] = array[row][column + i];
         }
+        // return Arrays.toString(topRow);
         return Arrays.stream(topRow).sum();
 
     }
 
-    private static int getMiddleRow(int[] array, int start) {
-        return array[start + 1];
+    private static int getMiddleRow(int[][] array, int row, int column) {
+        return array[row][column + 1];
     }
 
-    private static int getBottomRow(int[] array, int start) {
+    private static int getBottomRow(int[][] array, int row, int column) {
         int bottomRow[] = new int[3];
-        for(int i = start; i < 3; i++) {
-            bottomRow[i] = array[i];
+        for(int i = 0; i < 3; i++) {
+            bottomRow[i] = array[row][column + i];
         }
         return Arrays.stream(bottomRow).sum();
+        //return Arrays.toString(bottomRow);
     }
 }
