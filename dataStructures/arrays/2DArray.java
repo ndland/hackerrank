@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Solution {
-    public static int valueOfHourglass;
+    public static int valueOfHourglass = Integer.MIN_VALUE;
 
     public static void main(String[] args) {
 
@@ -21,9 +21,6 @@ public class Solution {
 
         for(int row = 0; row <= 3; row++) {
             for(int column = 0; column <= 3; column++) {
-                // System.out.println("Top Row: " + getTopRow(array, row, column));
-                // System.out.println("Middle Row: " + getMiddleRow(array, row + 1, column));
-                // System.out.println("Bottom Row: " + getBottomRow(array, row + 2, column) + "\n");
                 int total = getTopRow(array, row, column) + getMiddleRow(array, row + 1, column) + getBottomRow(array, row + 2, column);
                 if(valueOfHourglass < total) {
                     valueOfHourglass = total;
@@ -40,7 +37,6 @@ public class Solution {
         for(int i = 0; i < 3; i++) {
             topRow[i] = array[row][column + i];
         }
-        // return Arrays.toString(topRow);
         return Arrays.stream(topRow).sum();
 
     }
@@ -55,6 +51,5 @@ public class Solution {
             bottomRow[i] = array[row][column + i];
         }
         return Arrays.stream(bottomRow).sum();
-        //return Arrays.toString(bottomRow);
     }
 }
